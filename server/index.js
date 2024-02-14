@@ -2,12 +2,14 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const cors = require('cors');
 require('dotenv').config();
 
 
 const app = express();
 const PORT = process.env.PORT || 3001;
 
+app.use(cors());
 app.use(express.json());
 
 const mongoURI = process.env.MONGODB_URI || 'mongodb://localhost:27017/fbpage';
@@ -30,13 +32,12 @@ const User = mongoose.model('User', UserSchema);
 
 // Register endpoint
 app.post('/api/register', async (req, res) => {
-  const { fullName, email, password, role } = req.body;
-
+  const { fullName, email, password} = req.body;
   try {
     // Check if the email is already registered
     const existingUser = await User.findOne({ email });
     if (existingUser) {
-      return res.status(400).json({ error: 'Email is already registered' });
+      return res.status(400).json({ message: 'Email is already registered' });
     }
 
     // Hash the password before saving it
@@ -46,8 +47,7 @@ app.post('/api/register', async (req, res) => {
     const newUser = new User({
       fullName,
       email,
-      password: hashedPassword,
-      role,
+      password: hashedPassword
     });
 
     // Save the user to the database
@@ -56,7 +56,7 @@ app.post('/api/register', async (req, res) => {
     res.status(201).json({ message: 'User registered successfully' });
   } catch (error) {
     console.error('Error during registration:', error);
-    res.status(500).json({ error: 'Internal Server Error' });
+    res.status(500).json({ message: 'Internal Server Error' });
   }
 });
 
@@ -75,13 +75,13 @@ app.post('/api/login', async (req, res) => {
         expiresIn: '1h', // Token expires in 1 hour
       });
 
-      res.status(200).json({ token });
+      res.status(200).json({ token : token , message : "Login Successful"});
     } else {
-      res.status(401).json({ error: 'Invalid email or password' });
+      res.status(401).json({ message: 'Invalid email or password' });
     }
   } catch (error) {
     console.error('Error during login:', error);
-    res.status(500).json({ error: 'Internal Server Error' });
+    res.status(500).json({ message: 'Internal Server Error' });
   }
 });
 
