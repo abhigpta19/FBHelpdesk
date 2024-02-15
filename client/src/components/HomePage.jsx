@@ -1,4 +1,5 @@
 import React from 'react';
+import IntegrationBox from './Integationcomponent';
 import '../css/HomePage.css';
 
 const HomePage = () => {
@@ -8,6 +9,8 @@ const HomePage = () => {
         <span className="welcome-line1">Welcome to</span>
         <br/>
         <span className="welcome-line2">FB DM Helpdesk</span>
+        <br/>
+        <IntegrationBox/>
       </div>
     </div>
   );
