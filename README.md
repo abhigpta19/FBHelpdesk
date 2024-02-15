@@ -11,8 +11,6 @@ his project is a Proof of Concept (POC) application designed to serve as a Faceb
 - [Setup](#setup)
   - [Prerequisites](#prerequisites)
   - [Project Setup](#project-setup)
-- [Testing the Application](#testing-the-application)
-- [Additional Notes](#additional-notes)
 
 ## Technologies Used
 
