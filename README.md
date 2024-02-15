@@ -1,6 +1,6 @@
 # FB DM Helpdesk
 
-his project is a Proof of Concept (POC) application designed to serve as a Facebook Helpdesk for businesses dealing with a high volume of messenger messages. The primary goal of the app is to simplify and streamline the process of managing and responding to Facebook messages, especially for companies receiving a large number of inquiries daily, such as e-commerce platforms like Amazon.
+This project is an application designed to serve as a Facebook Helpdesk for businesses dealing with a high volume of messenger messages. The primary goal of the app is to simplify and streamline the process of managing and responding to Facebook messages, especially for companies receiving a large number of inquiries daily, such as e-commerce platforms like Amazon.
 
 #### Video Demonstration Link : [Demo Video](https://drive.google.com/drive/folders/1R53mud5dOgBbOMckZyJbSGDIXwiX0f9A?usp=sharing)
 
