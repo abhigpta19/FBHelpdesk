@@ -28,15 +28,17 @@ const IntegrationBox = () => {
 
   return (
     <div className={`integration-box ${isIntegrated ? 'integrated' : ''}`}>
-      <p>{isIntegrated ? 'Your Facebook pages are integrated.' : 'Click to integrate your Facebook pages'}</p>
-      <button className={isIntegrated ? 'integrated-button' : ''} onClick={()=> {handleButtonClick();if(isIntegrated){navigate('/fbpage');}}}>
-        {integrationButtonText}
-      </button>
+      <p style={{color : 'black'}}>{isIntegrated ? 'Your Facebook pages are integrated.' : 'Click to integrate your Facebook pages'}</p>
+      <br/>
       {isIntegrated && (
         <button className="disintegrate-button" onClick={handleButtonClick}>
           {disintegrateButtonText}
         </button>
       )}
+      <button className={isIntegrated ? 'integrated-button' : ''} onClick={()=> {handleButtonClick();if(isIntegrated){navigate('/fbpage');}}}>
+        {integrationButtonText}
+      </button>
+      
     </div>
   );
 };

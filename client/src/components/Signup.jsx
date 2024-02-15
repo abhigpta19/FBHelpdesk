@@ -29,7 +29,6 @@ const SignUp = () => {
 
       if (response.ok) {
         const data = await response.json();
-        localStorage.setItem('jwtToken', data.token);
         setShowPopup(true);
         setMessage(data.message);
       } else {
@@ -103,12 +102,12 @@ const SignUp = () => {
         <div className="popup">
           <div className="popup-content">
             <p>{message}</p>
-            <button onClick={() => {setShowPopup(false); if(message === 'User registered successfully'){navigate('/')}}}>OK</button>
+            <button onClick={() => {setShowPopup(false); if(message === 'User registered successfully'){navigate('/login')}}}>OK</button>
           </div>
         </div>
       )}
     </div>
-  );
+  ); 
 };
 
 export default SignUp;

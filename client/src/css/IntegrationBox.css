@@ -3,6 +3,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    background-color: #ccc;
     width: 300px;
     padding: 20px;
     border: 2px solid #ccc;
@@ -27,7 +28,7 @@
   }
   
   .integration-box button.integrated-button {
-    background-color: #28a745;
+    background-color: #0056b3;
   }
   
   .integration-box button.disintegrate-button {
@@ -35,7 +36,8 @@
   }
   
   .integration-box button:hover {
-    background-color: #0056b3;
+    color: black;
+    background-color: #fff;
   }
   
   /* .integration-box.integrated {

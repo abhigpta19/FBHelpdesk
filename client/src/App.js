@@ -9,7 +9,7 @@ import './App.css';
 const App = () => {
   return (
     <Router>
-      <div className="navbar">
+      {/* <div className="navbar">
         <Link to="/" className="nav-link">
           Home
         </Link>
@@ -19,12 +19,12 @@ const App = () => {
         <Link to="/signup" className="nav-link">
           Sign Up
         </Link>
-      </div>
+      </div> */}
 
       <Routes>
-        <Route path="/" element={<HomePage />} />
+        <Route path="/home" element={<HomePage />} />
         <Route path="/login" element={<LoginPage />} />
-        <Route path="/signup" element={<SignUpPage />} />
+        <Route path="/" element={<SignUpPage />} />
         <Route path="/fbpage" element={<PageDetails/>} />
       </Routes>
     </Router>

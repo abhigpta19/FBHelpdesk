@@ -72,7 +72,7 @@ const Login = () => {
           </button>
         </form>
         <p>
-          Don't have an account? <Link to="/signup">Sign Up</Link>
+          Don't have an account? <Link to="/">Sign Up</Link>
         </p>
       </div>
 
@@ -80,7 +80,7 @@ const Login = () => {
         <div className="popup">
           <div className="popup-content">
             <p>{message}</p>
-            <button onClick={() => {setShowPopup(false); if(message === "Login Successful"){navigate('/')}}}>OK</button>
+            <button onClick={() => {setShowPopup(false); if(message === "Login Successful"){navigate('/home')}}}>OK</button>
           </div>
         </div>
       )}
