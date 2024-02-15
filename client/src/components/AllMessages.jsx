@@ -48,7 +48,7 @@ const nameArray = fullName.split(' ');
 const firstName = nameArray[0];
 const lastName = nameArray[nameArray.length - 1];
     return (
-        <div className={`content ${isActive ? 'active' : ''}`} onClick={()=> updatenaam(id,name,email,firstName,lastName)}>
+        <div className={`content ${isActive ? 'active' : ''}`} onClick={()=> updatenaam(name,email,firstName,lastName)}>
             <div class="checkbox-wrapper">
                 <div className="checkbox">
                     <input type="checkbox" id="checkbox" />
