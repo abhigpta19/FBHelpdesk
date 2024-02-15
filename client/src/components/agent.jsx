@@ -28,7 +28,7 @@ const Agent = () => {
 
     const fetchmess = async () => {
             try {
-                const response = await fetch('https://graph.facebook.com/v19.0/197468190125742/conversations?fields=participants,messages{id,message,created_time,from}&access_token=EAAZATCgv3TQMBOyhuZBaZAOiVpff94M5y1wlIQQvLT9mRF6kSgiZAiHO97XhS6AiEB6TRHbuKnVhxJoX33zhmYZCDZA6ZBuu8cZA6w3JkZBcJzj4lSqGPOu7WK5Bkb2t0GnWM70e7LgwvLen2iLKaNfuMsZCeiAdYc6hGrVymn0qm5nO4EeexB8db8jgUUov1ZAATnqUEEDPndBcGsq7RLKI5QZBzNZCQdqZCpJw4ZD');
+                const response = await fetch('https://graph.facebook.com/v19.0/197468190125742/conversations?fields=participants,messages{id,message,created_time,from}&access_token=EAAZATCgv3TQMBO1tQtQFxGpVXOvsx3J05eoZBVFbdIdqhokPCbdybo5onRZANaZBpNnhNhOPEMrN1cqEdYARpyFwaDfxJkhTfYyPe0pmJVsYdeGoRrAYssl3Cgo3cgLbk6IYjfvGWeGzU4ZCPspqe63cf9Cw8z9WwMzH1ZCZCCH4gZCsUeRjk6zi5MS45THVkDiKJofj4zFZCdhuPZBIKYWY2L7RObTUT5aN4ZD');
                 const data = await response.json();
                 
                 
@@ -70,7 +70,10 @@ const Agent = () => {
         try {
             console.log("he;jfojidjfid",psid);
 
-            const response = await fetch('https://graph.facebook.com/v19.0/197468190125742/conversations?fields=participants,messages{id,message,created_time,from}&access_token=EAAZATCgv3TQMBOyhuZBaZAOiVpff94M5y1wlIQQvLT9mRF6kSgiZAiHO97XhS6AiEB6TRHbuKnVhxJoX33zhmYZCDZA6ZBuu8cZA6w3JkZBcJzj4lSqGPOu7WK5Bkb2t0GnWM70e7LgwvLen2iLKaNfuMsZCeiAdYc6hGrVymn0qm5nO4EeexB8db8jgUUov1ZAATnqUEEDPndBcGsq7RLKI5QZBzNZCQdqZCpJw4ZD');
+            if(psid=='')
+            return [];
+
+            const response = await fetch('https://graph.facebook.com/v19.0/197468190125742/conversations?fields=participants,messages{id,message,created_time,from}&access_token=EAAZATCgv3TQMBO1tQtQFxGpVXOvsx3J05eoZBVFbdIdqhokPCbdybo5onRZANaZBpNnhNhOPEMrN1cqEdYARpyFwaDfxJkhTfYyPe0pmJVsYdeGoRrAYssl3Cgo3cgLbk6IYjfvGWeGzU4ZCPspqe63cf9Cw8z9WwMzH1ZCZCCH4gZCsUeRjk6zi5MS45THVkDiKJofj4zFZCdhuPZBIKYWY2L7RObTUT5aN4ZD');
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
@@ -109,7 +112,7 @@ const Agent = () => {
         }
     }
 
-    fetchData(pid);
+    // fetchData();
 
     function convertGMTtoIST(gmtTime) {
         const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
@@ -171,7 +174,7 @@ const Agent = () => {
                         "recipient": { "id": pid },
                         "message": { "text": inputMessage },
                         "messaging_type": "RESPONSE",
-                        "access_token": "EAAZATCgv3TQMBOyhuZBaZAOiVpff94M5y1wlIQQvLT9mRF6kSgiZAiHO97XhS6AiEB6TRHbuKnVhxJoX33zhmYZCDZA6ZBuu8cZA6w3JkZBcJzj4lSqGPOu7WK5Bkb2t0GnWM70e7LgwvLen2iLKaNfuMsZCeiAdYc6hGrVymn0qm5nO4EeexB8db8jgUUov1ZAATnqUEEDPndBcGsq7RLKI5QZBzNZCQdqZCpJw4ZD"
+                        "access_token": "EAAZATCgv3TQMBO1tQtQFxGpVXOvsx3J05eoZBVFbdIdqhokPCbdybo5onRZANaZBpNnhNhOPEMrN1cqEdYARpyFwaDfxJkhTfYyPe0pmJVsYdeGoRrAYssl3Cgo3cgLbk6IYjfvGWeGzU4ZCPspqe63cf9Cw8z9WwMzH1ZCZCCH4gZCsUeRjk6zi5MS45THVkDiKJofj4zFZCdhuPZBIKYWY2L7RObTUT5aN4ZD"
                     }),
                 });
                 if (!response.ok) {
@@ -180,7 +183,7 @@ const Agent = () => {
 
                 // Handle success response
                 console.log('Message sent successfully');
-                fetchData();
+                fetchData(pid);
             } catch (error) {
                 // Handle error
                 console.error('There was a problem with the fetch operation:', error);
