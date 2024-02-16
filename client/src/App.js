@@ -5,22 +5,9 @@ import LoginPage from './components/Login';
 import SignUpPage from './components/Signup';
 import PageDetails from './components/agent';
 import './App.css';
-
 const App = () => {
   return (
     <Router>
-      {/* <div className="navbar">
-        <Link to="/" className="nav-link">
-          Home
-        </Link>
-        <Link to="/login" className="nav-link">
-          Login
-        </Link>
-        <Link to="/signup" className="nav-link">
-          Sign Up
-        </Link>
-      </div> */}
-
       <Routes>
         <Route path="/home" element={<HomePage />} />
         <Route path="/login" element={<LoginPage />} />

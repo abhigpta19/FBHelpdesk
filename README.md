@@ -72,3 +72,7 @@ Here are some screenshots showcasing different aspects of the Facebook Chat Mana
 ![Facebook Page Integration](screenshots/integration.png)
 
 
+
+
+
+
