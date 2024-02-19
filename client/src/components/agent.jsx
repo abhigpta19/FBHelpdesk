@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { ReactComponent as MailBox } from '../assets/inbox-alt-1-svgrepo-com.svg'
 import { ReactComponent as Connection } from "../assets/share-circle-network-connection-social-svgrepo-com.svg";
@@ -28,10 +27,11 @@ const Agent = () => {
 
     const fetchmess = async () => {
             try {
-                const response = await fetch('https://graph.facebook.com/v19.0/197468190125742/conversations?fields=participants,messages{id,message,created_time,from}&access_token=EAAZATCgv3TQMBO6sMHtYmiOICBXaBCtovrreSwZA6DwwhDixe5BgkFPtI3pWGZCvJlYTBIWfKsc2R7oCmKvbNaLcLIHusXSfnZBU1YjuZApdWmGeudIsa3IXeggzYpcusnv9q0anF8HSHedGQX4oPceFHQdQReifIsxBSrGA0aFKkU5IaBNBpGbTobZAArYHPiXZA1XhWIZD');
+                // const response = await fetch('https://graph.facebook.com/v19.0/197468190125742/conversations?fields=participants,messages{id,message,created_time,from}&access_token=EAAZATCgv3TQMBO6sMHtYmiOICBXaBCtovrreSwZA6DwwhDixe5BgkFPtI3pWGZCvJlYTBIWfKsc2R7oCmKvbNaLcLIHusXSfnZBU1YjuZApdWmGeudIsa3IXeggzYpcusnv9q0anF8HSHedGQX4oPceFHQdQReifIsxBSrGA0aFKkU5IaBNBpGbTobZAArYHPiXZA1XhWIZD');
+                // const data = await response.json();
+                
+                const response = await fetch('http://localhost:3001/api/getchat');
                 const data = await response.json();
-                
-                
                 for(const user of data.data)
                   {
                       const temp =(user.participants.data[0]);
@@ -72,8 +72,9 @@ const Agent = () => {
 
             if(psid=='')
             return [];
-
-            const response = await fetch('https://graph.facebook.com/v19.0/197468190125742/conversations?fields=participants,messages{id,message,created_time,from}&access_token=EAAZATCgv3TQMBO6sMHtYmiOICBXaBCtovrreSwZA6DwwhDixe5BgkFPtI3pWGZCvJlYTBIWfKsc2R7oCmKvbNaLcLIHusXSfnZBU1YjuZApdWmGeudIsa3IXeggzYpcusnv9q0anF8HSHedGQX4oPceFHQdQReifIsxBSrGA0aFKkU5IaBNBpGbTobZAArYHPiXZA1XhWIZD');
+            const response = await fetch('http://localhost:3001/api/getchat');
+            //const data = await response.json();
+            //const response = await fetch('https://graph.facebook.com/v19.0/197468190125742/conversations?fields=participants,messages{id,message,created_time,from}&access_token=EAAZATCgv3TQMBO6sMHtYmiOICBXaBCtovrreSwZA6DwwhDixe5BgkFPtI3pWGZCvJlYTBIWfKsc2R7oCmKvbNaLcLIHusXSfnZBU1YjuZApdWmGeudIsa3IXeggzYpcusnv9q0anF8HSHedGQX4oPceFHQdQReifIsxBSrGA0aFKkU5IaBNBpGbTobZAArYHPiXZA1XhWIZD');
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
@@ -90,6 +91,7 @@ const Agent = () => {
                 );
                 if (participantData) {
                     // Return the messages data for the participant
+                    console.log(participantData.messages.data);
                     return participantData.messages.data;
                 } else {
                     // Participant not found
@@ -103,7 +105,7 @@ const Agent = () => {
             // console.log(dm_messages.reverse);
             const dm_messages1 = await dm_messages.map((_, index, arr) => arr[arr.length - 1 - index]);
             // console.log(dm_messages1[0].from.name)
-            console.log(dm_messages);
+            console.log(dm_messages1);
             setChats(dm_messages1);
 
         } catch (error) {

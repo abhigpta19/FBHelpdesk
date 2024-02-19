@@ -27,8 +27,14 @@ const UserSchema = new mongoose.Schema({
   password: String,
   role: String,
 });
+const ChatSchema = new mongoose.Schema({
+  id : String,
+  data: Object,
+  paging : Object,
+});
 
 const User = mongoose.model('User', UserSchema);
+const Chat = mongoose.model('Chat', ChatSchema);
 
 // Register endpoint
 app.post('/api/register', async (req, res) => {
@@ -81,6 +87,33 @@ app.post('/api/login', async (req, res) => {
     }
   } catch (error) {
     console.error('Error during login:', error);
+    res.status(500).json({ message: 'Internal Server Error' });
+  }
+});
+
+app.get('/api/getchat', async (req, res) => {
+  const response = await fetch('https://graph.facebook.com/v19.0/197468190125742/conversations?fields=participants,messages{id,message,created_time,from}&access_token=EAAZATCgv3TQMBO6sMHtYmiOICBXaBCtovrreSwZA6DwwhDixe5BgkFPtI3pWGZCvJlYTBIWfKsc2R7oCmKvbNaLcLIHusXSfnZBU1YjuZApdWmGeudIsa3IXeggzYpcusnv9q0anF8HSHedGQX4oPceFHQdQReifIsxBSrGA0aFKkU5IaBNBpGbTobZAArYHPiXZA1XhWIZD');
+  const data = await response.json();
+
+  try {
+    for(i in data.data)
+    {
+      console.log(data.data[i].participants.data[0].id);
+    const existingUser = await Chat.findOne({id : data.data[i].participants.data[0].id});
+    if (existingUser) {
+      //console.log(existingUser);
+      await Chat.deleteMany({id : data.data[i].participants.data[0].id});
+    }
+    const newChat = new Chat({
+      id : data.data[i].participants.data[0].id,
+      data : data.data,
+      password: data.paging
+    });
+    await newChat.save();
+  }
+    
+    res.status(200).json(data);
+  } catch (error) {
     res.status(500).json({ message: 'Internal Server Error' });
   }
 });
