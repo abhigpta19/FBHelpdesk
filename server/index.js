@@ -27,10 +27,22 @@ const UserSchema = new mongoose.Schema({
   password: String,
   role: String,
 });
+// const ChatSchema = new mongoose.Schema({
+//   id : String,
+//   data: Object,
+//   paging : Object,
+// });
+
 const ChatSchema = new mongoose.Schema({
   id : String,
-  data: Object,
-  paging : Object,
+  name : String,
+  email : String,
+  messages: [{
+    sender_id : String,
+    sender_name : String,
+    message : String,
+    created_time : String,
+  }],
 });
 
 const User = mongoose.model('User', UserSchema);
@@ -104,10 +116,22 @@ app.get('/api/getchat', async (req, res) => {
       //console.log(existingUser);
       await Chat.deleteMany({id : data.data[i].participants.data[0].id});
     }
+    let chats = [];
+    for(mes of data.data[i].messages.data)
+    {
+      const chat = {
+        sender_id : mes.from.id,
+        sender_name : mes.from.name,
+        message : mes.message,
+        created_time : mes.created_time,
+      }
+      chats.push(chat);
+    }
     const newChat = new Chat({
       id : data.data[i].participants.data[0].id,
-      data : data.data,
-      password: data.paging
+      name : data.data[i].participants.data[0].name,
+      email : data.data[i].participants.data[0].email,
+      messages : chats
     });
     await newChat.save();
   }
