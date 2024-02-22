@@ -2,6 +2,8 @@
 
 This project is an application designed to serve as a Facebook Helpdesk for businesses dealing with a high volume of messenger messages. The primary goal of the app is to simplify and streamline the process of managing and responding to Facebook messages, especially for companies receiving a large number of inquiries daily, such as e-commerce platforms like Amazon.
 
+#### Deployment link : [https://fb-helpdesk-dm.netlify.app/](https://fb-helpdesk-dm.netlify.app/)
+
 #### Video Demonstration Link : [Demo Video](https://drive.google.com/drive/folders/1R53mud5dOgBbOMckZyJbSGDIXwiX0f9A?usp=sharing)
 
 ## Table of Contents
