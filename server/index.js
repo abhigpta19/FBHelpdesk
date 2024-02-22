@@ -8,11 +8,12 @@ require('dotenv').config();
 
 const app = express();
 const PORT = process.env.PORT || 3001;
+let access_token = process.env.ACCESS_TOKEN;
 
 app.use(cors());
 app.use(express.json());
 
-const mongoURI = process.env.MONGODB_URI || 'mongodb://localhost:27017/fbpage';
+const mongoURI = process.env.MONGODB_URI;
 const jwtSecretKey = process.env.JWT_SECRET_KEY || 'default-secret-key';
 
 mongoose.connect(mongoURI, {
@@ -27,11 +28,6 @@ const UserSchema = new mongoose.Schema({
   password: String,
   role: String,
 });
-// const ChatSchema = new mongoose.Schema({
-//   id : String,
-//   data: Object,
-//   paging : Object,
-// });
 
 const ChatSchema = new mongoose.Schema({
   id : String,
@@ -104,9 +100,10 @@ app.post('/api/login', async (req, res) => {
 });
 
 app.get('/api/getchat', async (req, res) => {
-  const response = await fetch('https://graph.facebook.com/v19.0/197468190125742/conversations?fields=participants,messages{id,message,created_time,from}&access_token=EAAZATCgv3TQMBO6sMHtYmiOICBXaBCtovrreSwZA6DwwhDixe5BgkFPtI3pWGZCvJlYTBIWfKsc2R7oCmKvbNaLcLIHusXSfnZBU1YjuZApdWmGeudIsa3IXeggzYpcusnv9q0anF8HSHedGQX4oPceFHQdQReifIsxBSrGA0aFKkU5IaBNBpGbTobZAArYHPiXZA1XhWIZD');
+  let url = 'https://graph.facebook.com/v19.0/197468190125742/conversations?fields=participants,messages{id,message,created_time,from}&access_token=' + access_token;
+  const response = await fetch(url);
   const data = await response.json();
-
+  
   try {
     for(i in data.data)
     {
